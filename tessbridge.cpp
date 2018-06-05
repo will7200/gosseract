@@ -50,6 +50,8 @@ void SetImageFromBuffer(TessBaseAPI a, unsigned char* data, int size) {
   tesseract::TessBaseAPI * api = (tesseract::TessBaseAPI*)a;
   Pix *image = pixReadMem(data, (size_t)size);
   api->SetImage(image);
+  if(api->GetSourceYResolution() < 70)
+      api->SetSourceResolution(70);
 }
 
 void SetPageSegMode(TessBaseAPI a, int m) {
